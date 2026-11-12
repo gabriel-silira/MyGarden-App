@@ -49,11 +49,46 @@ app.*.map.json
 
 # Local development notes and visual review evidence
 /docs/
-/PRODUCT.md
-/DESIGN.md
-/.codex/
-/.agents/
 /.vscode/
+
+# AI assistant instructions, context, memory and local configuration
+# Patterns without a leading slash also protect nested project folders.
+.codex/
+.agents/
+.agent/
+.claude/
+.cursor/
+.windsurf/
+.gemini/
+.opencode/
+.ai/
+.aider*
+.cursorrules
+.cursorignore
+.windsurfrules
+.mcp.json
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+.github/agents/
+*[Aa][Gg][Ee][Nn][Tt][Ss]*.md
+*[Cc][Ll][Aa][Uu][Dd][Ee]*.md
+*[Gg][Ee][Mm][Ii][Nn][Ii]*.md
+*[Cc][Oo][Dd][Ee][Xx]*.md
+*[Cc][Oo][Nn][Tt][Ee][Xx][Tt]*.md
+*[Cc][Oo][Nn][Tt][Ee][Xx][Tt]*.txt
+*[Cc][Oo][Nn][Tt][Ee][Xx][Tt]*.json
+*[Cc][Oo][Nn][Tt][Ee][Xx][Tt]*.yaml
+*[Cc][Oo][Nn][Tt][Ee][Xx][Tt]*.yml
+*[Mm][Ee][Mm][Oo][Rr][Yy]*.md
+*[Pp][Rr][Oo][Mm][Pp][Tt]*.md
+[Ss][Kk][Ii][Ll][Ll].md
+[Pp][Rr][Oo][Dd][Uu][Cc][Tt].md
+[Dd][Ee][Ss][Ii][Gg][Nn].md
+[Cc][Oo][Nn][Tt][Ee][Xx][Tt]/
+[Cc][Oo][Nn][Tt][Ee][Xx][Tt][Ss]/
+[Mm][Ee][Mm][Oo][Rr][Ii][Ee][Ss]/
+[Pp][Rr][Oo][Mm][Pp][Tt][Ss]/
 
 # Local secrets and installation artifacts
 .env
