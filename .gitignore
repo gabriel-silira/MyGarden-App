@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+/app/build/
+/app/coverage/
 
 # Symbolication related
 app.*.symbols
@@ -43,13 +45,27 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/app/android/app/debug/
+/app/android/app/profile/
+/app/android/app/release/
 
 # Widget Preview related
 .widget_preview/
 
 # Local development notes and visual review evidence
 /docs/
+/app/docs/
 /.vscode/
+/app/.vscode/
+
+# Arduino / ESP32 generated build files
+/firmware/build/
+/firmware/.pio/
+*.elf
+*.hex
+*.bin
+secrets.h
+arduino_secrets.h
 
 # AI assistant instructions, context, memory and local configuration
 # Patterns without a leading slash also protect nested project folders.
