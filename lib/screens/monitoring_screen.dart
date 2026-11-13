@@ -115,7 +115,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
               leading: const Icon(Icons.science_outlined),
               shape: const Border(),
               collapsedShape: const Border(),
-              childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+              childrenPadding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
               children: [
                 Wrap(
                   spacing: 8,
@@ -138,7 +139,7 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
                       )
                       .toList(),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
                 const Text(
                   'Cenários e faixas são demonstrativos. Os períodos filtram somente o histórico disponível nesta sessão.',
                 ),

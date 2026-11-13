@@ -117,13 +117,16 @@ class BrandIcon extends StatelessWidget {
     child: SizedBox.square(
       dimension: size,
       child: OverflowBox(
-        maxWidth: size * 1.18,
-        maxHeight: size * 1.18,
+        // The originals include a black outer margin and a baked-in border.
+        // Crop inside that border; the widget supplies the visible corners.
+        maxWidth: size * 1.26,
+        maxHeight: size * 1.26,
         child: Image.asset(
           'assets/brand/icon-${dark ? 'dark' : 'light'}.png',
-          width: size * 1.18,
-          height: size * 1.18,
-          cacheWidth: 180,
+          width: size * 1.26,
+          height: size * 1.26,
+          cacheWidth: (size * 1.26 * MediaQuery.devicePixelRatioOf(context))
+              .ceil(),
           semanticLabel: 'Ícone MyGarden ${dark ? 'escuro' : 'claro'}',
         ),
       ),

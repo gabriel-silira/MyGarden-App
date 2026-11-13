@@ -195,32 +195,167 @@ class EmptyGarden extends StatelessWidget {
 class PlantSelector extends StatelessWidget {
   const PlantSelector({super.key, required this.controller});
   final GardenController controller;
+
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(bottom: 16),
-    child: DropdownButtonFormField<String>(
-      key: ValueKey(controller.selectedId),
-      initialValue: controller.selectedId,
-      isExpanded: true,
-      decoration: const InputDecoration(
-        labelText: 'Planta acompanhada',
-        prefixIcon: Icon(Icons.eco_outlined),
-      ),
-      items: controller.plants
-          .map(
-            (p) => DropdownMenuItem(
-              value: p.id,
-              child: Text(p.name, overflow: TextOverflow.ellipsis),
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final selected = controller.selectedPlant;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 280),
+          child: LayoutBuilder(
+            builder: (context, constraints) => Material(
+              type: MaterialType.transparency,
+              child: PopupMenuButton<String>(
+                key: const ValueKey('plant-selector'),
+                tooltip: '',
+                enabled: !controller.busy && controller.plants.isNotEmpty,
+                position: PopupMenuPosition.under,
+                offset: const Offset(0, 8),
+                constraints: BoxConstraints(
+                  minWidth: constraints.maxWidth,
+                  maxWidth: constraints.maxWidth,
+                  maxHeight: 320,
+                ),
+                color: colors.surfaceContainerLow,
+                surfaceTintColor: Colors.transparent,
+                elevation: 6,
+                shadowColor: Colors.black.withValues(alpha: 0.22),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                borderRadius: BorderRadius.circular(14),
+                menuPadding: const EdgeInsets.all(8),
+                onSelected: controller.selectPlant,
+                itemBuilder: (_) => controller.plants.map((plant) {
+                  final active = plant.id == controller.selectedId;
+                  return PopupMenuItem<String>(
+                    value: plant.id,
+                    height: 48,
+                    padding: EdgeInsets.zero,
+                    child: Semantics(
+                      selected: active,
+                      child: Container(
+                        constraints: const BoxConstraints(minHeight: 48),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: active
+                              ? colors.primary.withValues(alpha: 0.10)
+                              : null,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.eco_outlined,
+                              size: 18,
+                              color: active
+                                  ? colors.primary
+                                  : colors.onSurfaceVariant,
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                plant.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                  color: active
+                                      ? colors.primary
+                                      : colors.onSurface,
+                                  fontWeight: active
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            SizedBox(
+                              width: 18,
+                              child: active
+                                  ? Icon(
+                                      Icons.check_rounded,
+                                      size: 18,
+                                      color: colors.primary,
+                                    )
+                                  : null,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+                child: Semantics(
+                  label:
+                      'Planta acompanhada: ${selected?.name ?? 'Nenhuma planta'}',
+                  excludeSemantics: true,
+                  child: Ink(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colors.surfaceContainerLow,
+                      border: Border.all(color: colors.outlineVariant),
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.eco_outlined,
+                          size: 22,
+                          color: colors.primary,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Planta acompanhada',
+                                style: theme.textTheme.labelSmall!.copyWith(
+                                  color: colors.onSurfaceVariant,
+                                ),
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                selected?.name ?? 'Selecionar planta',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                  color: colors.onSurface,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Icon(
+                          Icons.expand_more_rounded,
+                          size: 20,
+                          color: colors.onSurfaceVariant,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-          )
-          .toList(),
-      onChanged: controller.busy
-          ? null
-          : (value) {
-              if (value != null) controller.selectPlant(value);
-            },
-    ),
-  );
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class ConditionBadge extends StatelessWidget {

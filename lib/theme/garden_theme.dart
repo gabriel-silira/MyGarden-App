@@ -42,6 +42,8 @@ abstract final class GardenTheme {
       colorScheme: scheme,
       brightness: brightness,
       scaffoldBackgroundColor: scheme.surface,
+      canvasColor: scheme.surfaceContainerLow,
+      cardColor: scheme.surfaceContainerLow,
       visualDensity: VisualDensity.standard,
     );
     return base.copyWith(
@@ -118,6 +120,26 @@ abstract final class GardenTheme {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: scheme.outlineVariant),
+        ),
+      ),
+      popupMenuTheme: PopupMenuThemeData(
+        color: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
+        elevation: 4,
+        shadowColor: Colors.black.withValues(alpha: .18),
+        menuPadding: const EdgeInsets.symmetric(vertical: 8),
+        position: PopupMenuPosition.under,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: scheme.outlineVariant),
+        ),
+        labelTextStyle: WidgetStateProperty.resolveWith(
+          (states) => base.textTheme.bodyMedium!.copyWith(
+            color: states.contains(WidgetState.disabled)
+                ? scheme.onSurface.withValues(alpha: .38)
+                : scheme.onSurface,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
       chipTheme: base.chipTheme.copyWith(

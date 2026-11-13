@@ -4,6 +4,7 @@ import '../domain/models.dart';
 import '../state/garden_controller.dart';
 import '../widgets/garden_widgets.dart';
 import '../widgets/mint_symbol.dart';
+import 'licenses_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({
@@ -220,10 +221,10 @@ class SettingsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       TextButton(
-                        onPressed: () => showLicensePage(
-                          context: context,
-                          applicationName: 'MyGarden',
-                          applicationVersion: '0.1.0',
+                        onPressed: () => Navigator.of(context).push<void>(
+                          MaterialPageRoute(
+                            builder: (_) => const LicensesScreen(),
+                          ),
                         ),
                         child: const Text('Licenças de software'),
                       ),

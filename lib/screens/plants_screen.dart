@@ -120,14 +120,31 @@ class PlantsScreen extends StatelessWidget {
               itemBuilder: (_) => const [
                 PopupMenuItem(
                   value: 'monitor',
-                  child: Text('Acompanhar planta'),
+                  child: _PlantMenuLabel(
+                    Icons.monitor_heart_outlined,
+                    'Acompanhar planta',
+                  ),
                 ),
                 PopupMenuItem(
                   value: 'details',
-                  child: Text('Informações da planta'),
+                  child: _PlantMenuLabel(
+                    Icons.info_outline,
+                    'Informações da planta',
+                  ),
                 ),
-                PopupMenuItem(value: 'edit', child: Text('Editar planta')),
-                PopupMenuItem(value: 'delete', child: Text('Remover planta')),
+                PopupMenuItem(
+                  value: 'edit',
+                  child: _PlantMenuLabel(Icons.edit_outlined, 'Editar planta'),
+                ),
+                PopupMenuDivider(),
+                PopupMenuItem(
+                  value: 'delete',
+                  child: _PlantMenuLabel(
+                    Icons.delete_outline,
+                    'Remover planta',
+                    destructive: true,
+                  ),
+                ),
               ],
             ),
           ),
@@ -143,6 +160,34 @@ class PlantsScreen extends StatelessWidget {
         ),
     ],
   );
+}
+
+class _PlantMenuLabel extends StatelessWidget {
+  const _PlantMenuLabel(this.icon, this.label, {this.destructive = false});
+  final IconData icon;
+  final String label;
+  final bool destructive;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 20,
+          color: destructive ? colors.error : colors.primary,
+        ),
+        const SizedBox(width: 12),
+        Flexible(
+          child: Text(
+            label,
+            style: destructive ? TextStyle(color: colors.error) : null,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 Future<void> editPlant(
