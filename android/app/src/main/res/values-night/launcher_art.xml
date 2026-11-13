@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="drawable" name="mygarden_launcher_art">@drawable/mygarden_launcher_art_dark</item>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background_light">#E5F6D9</color>
+    <color name="launcher_leaf_light">#187510</color>
+    <color name="launcher_background_dark">#002519</color>
+    <color name="launcher_leaf_dark">#B4F25B</color>
+    <item type="drawable" name="mygarden_launcher_art">@drawable/mygarden_launcher_art_light</item>
+</resources>
