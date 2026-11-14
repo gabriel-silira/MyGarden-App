@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Counter the adaptive icon's 1.5x foreground zoom: 1.5 * 0.84 = 1.26,
+     matching BrandIcon's crop while keeping the supplied green waves visible. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/mygarden_launcher_art"
+    android:inset="8%" />
