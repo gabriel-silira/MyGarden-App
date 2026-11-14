@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+ reserves a 288dp icon area; keep the mark inside its safe zone. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/mygarden_splash_mark"
+    android:insetLeft="96dp" android:insetTop="96dp"
+    android:insetRight="96dp" android:insetBottom="96dp" />

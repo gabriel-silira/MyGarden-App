@@ -70,6 +70,8 @@ void main() {
       await tester.pumpWidget(MyGardenApp(controller: controller));
       expect(find.byType(LoadingScreen), findsOneWidget);
       expect(find.text('Preparando seu jardim…'), findsOneWidget);
+      expect(find.byType(LinearProgressIndicator), findsOneWidget);
+      expect(find.byType(BrandIcon), findsNothing);
       expect(find.byType(NavigationDestination), findsNothing);
       if (readFails) {
         store.result.completeError(StateError('armazenamento indisponível'));

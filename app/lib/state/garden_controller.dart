@@ -87,6 +87,8 @@ class GardenController extends ChangeNotifier {
     } catch (_) {
       storageWarning = 'Não foi possível recuperar as preferências. Usando os padrões desta sessão.';
     }
+    // Apply restored appearance while readings are still loading.
+    _emit();
     try {
       for (final plant in _plants) {
         _history[plant.id] = await repository.history(plant);
