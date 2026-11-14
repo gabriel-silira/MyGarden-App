@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../domain/models.dart';
-import 'mint_symbol.dart';
+import 'plant_icon.dart';
 import 'garden_widgets.dart';
 
 class PlantArtwork extends StatelessWidget {
@@ -9,18 +9,8 @@ class PlantArtwork extends StatelessWidget {
   final Plant plant;
   final double size;
   @override
-  Widget build(BuildContext context) => SizedBox.square(
-    dimension: size,
-    child: plant.id == 'mint'
-        ? Image.asset(
-            'assets/images/mint-cutout.png',
-            fit: BoxFit.contain,
-            cacheWidth: 320,
-            semanticLabel: 'Hortelã',
-            errorBuilder: (_, error, stack) => MintSymbol(size: size),
-          )
-        : MintSymbol(size: size * .75, label: 'Símbolo de ${plant.name}'),
-  );
+  Widget build(BuildContext context) =>
+      PlantIconImage(icon: plant.icon, size: size);
 }
 
 class PlantTile extends StatelessWidget {

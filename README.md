@@ -12,6 +12,7 @@ firmware/   Código do Arduino/ESP32, ainda não implementado
 ## O que funciona hoje
 
 - Cadastro, edição e remoção de plantas.
+- Escolha de ícone por planta: hortelã, cidreira ou cebolinha.
 - Umidade do solo e temperatura simuladas, com gráficos e histórico da sessão.
 - Irrigação manual e automática simuladas, com limites por planta.
 - Temas claro, escuro e do sistema.

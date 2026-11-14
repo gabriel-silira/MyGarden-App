@@ -4,6 +4,7 @@ import '../domain/models.dart';
 import '../state/garden_controller.dart';
 import '../widgets/garden_widgets.dart';
 import '../widgets/plant_tile.dart';
+import '../widgets/plant_icon.dart';
 
 class PlantsScreen extends StatelessWidget {
   const PlantsScreen({
@@ -212,6 +213,7 @@ class _PlantEditorState extends State<_PlantEditor> {
   late final _name = TextEditingController(text: widget.plant?.name);
   late final _species = TextEditingController(text: widget.plant?.species);
   late final _notes = TextEditingController(text: widget.plant?.notes);
+  late PlantIcon _icon = widget.plant?.icon ?? PlantIcon.mint;
   @override
   void dispose() {
     _name.dispose();
@@ -223,6 +225,8 @@ class _PlantEditorState extends State<_PlantEditor> {
   @override
   Widget build(BuildContext context) => AlertDialog(
     title: Text(widget.plant == null ? 'Nova planta' : 'Editar planta'),
+    insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+    contentPadding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
     content: SizedBox(
       width: 420,
       child: Form(
@@ -231,9 +235,13 @@ class _PlantEditorState extends State<_PlantEditor> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              PlantIconPicker(
+                value: _icon,
+                onChanged: (icon) => setState(() => _icon = icon),
+              ),
+              const SizedBox(height: 24),
               TextFormField(
                 controller: _name,
-                autofocus: true,
                 maxLength: 50,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: const InputDecoration(labelText: 'Nome da planta'),
@@ -275,6 +283,7 @@ class _PlantEditorState extends State<_PlantEditor> {
           if (!_form.currentState!.validate()) return;
           widget.controller.savePlant(
             original: widget.plant,
+            icon: _icon,
             name: _name.text,
             species: _species.text,
             notes: _notes.text,

@@ -5,6 +5,7 @@ Aplicativo desenvolvido em Flutter para acompanhar plantas e organizar os cuidad
 ## Funcionalidades atuais
 
 - Cadastro, edição e remoção de plantas.
+- Escolha e alteração do ícone da planta entre hortelã, cidreira e cebolinha.
 - Visão geral do jardim com umidade do solo e temperatura simuladas.
 - Monitoramento com gráficos e histórico da sessão.
 - Irrigação manual e automática em modo de simulação, com limites configuráveis por planta.

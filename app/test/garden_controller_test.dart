@@ -135,6 +135,7 @@ void main() {
         name: 'Manjericão',
         species: 'Ocimum',
         notes: 'Cozinha',
+        icon: PlantIcon.lemonBalm,
       );
       final basil = c.selectedPlant!;
       await c.irrigate();
@@ -149,6 +150,7 @@ void main() {
       expect(restored.temperatureEnabled, false);
       expect(restored.latest!.temperature, isNull);
       expect(restored.plants.length, 2);
+      expect(restored.plants.last.icon, PlantIcon.lemonBalm);
       expect(restored.events, isEmpty);
       await restored.removePlant(basil.id);
       await restored.removePlant('mint');

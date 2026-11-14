@@ -10,6 +10,8 @@ enum SoilCondition { dry, balanced, wet }
 
 enum SimulationScenario { balanced, dry, wet, disconnected, empty }
 
+enum PlantIcon { mint, lemonBalm, chives }
+
 class IrrigationPreferences {
   IrrigationPreferences({
     this.minimum = 35,
@@ -46,6 +48,7 @@ class Plant {
     required this.name,
     required this.species,
     required this.notes,
+    this.icon = PlantIcon.mint,
     this.deviceId,
     required this.irrigation,
   });
@@ -53,18 +56,21 @@ class Plant {
   final String name;
   final String species;
   final String notes;
+  final PlantIcon icon;
   final String? deviceId;
   final IrrigationPreferences irrigation;
   Plant copyWith({
     String? name,
     String? species,
     String? notes,
+    PlantIcon? icon,
     IrrigationPreferences? irrigation,
   }) => Plant(
     id: id,
     name: name ?? this.name,
     species: species ?? this.species,
     notes: notes ?? this.notes,
+    icon: icon ?? this.icon,
     deviceId: deviceId,
     irrigation: irrigation ?? this.irrigation,
   );
@@ -73,6 +79,7 @@ class Plant {
     'name': name,
     'species': species,
     'notes': notes,
+    'icon': icon.name,
     'deviceId': deviceId,
     'irrigation': irrigation.toJson(),
   };
@@ -81,6 +88,11 @@ class Plant {
     name: json['name'] as String,
     species: json['species'] as String,
     notes: json['notes'] as String,
+    icon:
+        PlantIcon.values
+            .where((icon) => icon.name == json['icon'])
+            .firstOrNull ??
+        PlantIcon.mint,
     deviceId: json['deviceId'] as String?,
     irrigation: IrrigationPreferences.fromJson(
       json['irrigation'] as Map<String, dynamic>,

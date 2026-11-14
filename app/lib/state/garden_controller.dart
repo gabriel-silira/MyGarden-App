@@ -243,6 +243,7 @@ class GardenController extends ChangeNotifier {
 
   Future<void> savePlant({
     Plant? original,
+    PlantIcon? icon,
     required String name,
     required String species,
     required String notes,
@@ -252,6 +253,7 @@ class GardenController extends ChangeNotifier {
       final index = _plants.indexWhere((p) => p.id == original.id);
       if (index < 0) return;
       _plants[index] = original.copyWith(
+        icon: icon,
         name: name.trim(),
         species: species.trim(),
         notes: notes.trim(),
@@ -261,6 +263,7 @@ class GardenController extends ChangeNotifier {
       _plants.add(
         Plant(
           id: id,
+          icon: icon ?? PlantIcon.mint,
           name: name.trim(),
           species: species.trim(),
           notes: notes.trim(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../domain/models.dart';
 import '../state/garden_controller.dart';
 import '../theme/garden_theme.dart';
+import 'plant_icon.dart';
 
 String clockLabel(DateTime date) =>
     '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
@@ -253,12 +254,8 @@ class PlantSelector extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.eco_outlined,
-                              size: 18,
-                              color: active
-                                  ? colors.primary
-                                  : colors.onSurfaceVariant,
+                            ExcludeSemantics(
+                              child: PlantIconImage(icon: plant.icon, size: 24),
                             ),
                             const SizedBox(width: 10),
                             Expanded(
@@ -309,10 +306,9 @@ class PlantSelector extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.eco_outlined,
-                          size: 22,
-                          color: colors.primary,
+                        PlantIconImage(
+                          icon: selected?.icon ?? PlantIcon.mint,
+                          size: 28,
                         ),
                         const SizedBox(width: 12),
                         Expanded(

@@ -162,19 +162,27 @@ void main() {
     await tapText(tester, 'Salvar planta');
     expect(find.text('Informe um nome.'), findsOneWidget);
     await tester.enterText(find.byType(TextFormField).first, 'Alecrim');
+    await tester.ensureVisible(find.byKey(const ValueKey('plant-icon-chives')));
+    await tester.tap(find.byKey(const ValueKey('plant-icon-chives')));
     await tapText(tester, 'Salvar planta');
     expect(c.plants.length, 2);
     expect(c.selectedPlant!.name, 'Alecrim');
+    expect(c.selectedPlant!.icon, PlantIcon.chives);
     await tester.ensureVisible(find.byTooltip('Opções de Alecrim'));
     await tester.tap(find.byTooltip('Opções de Alecrim'));
     await tester.pumpAndSettle();
     await tapText(tester, 'Editar planta');
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('plant-icon-lemonBalm')),
+    );
+    await tester.tap(find.byKey(const ValueKey('plant-icon-lemonBalm')));
     await tester.enterText(
       find.byType(TextFormField).first,
       'Alecrim da varanda',
     );
     await tapText(tester, 'Salvar planta');
     expect(c.selectedPlant!.name, 'Alecrim da varanda');
+    expect(c.selectedPlant!.icon, PlantIcon.lemonBalm);
     expect(tester.takeException(), isNull);
   });
   testWidgets('irrigação continua acessível e registra evento', (tester) async {
